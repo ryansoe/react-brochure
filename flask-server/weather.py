@@ -1,12 +1,13 @@
 import requests
 from dotenv import load_dotenv
+from flask import jsonify
 from geopy.geocoders import Nominatim
 import os
 
-load_dotenv()
+load_dotenv()   
 
 def findlatlon(place):
-    geolocator = Nominatim(user_agent="MyApp")
+    geolocator = Nominatim(user_agent="GetLoc")
 
     location = geolocator.geocode(place)
 
@@ -24,6 +25,8 @@ def weatherinfo(place, days_ahead):
 
     response = requests.get(BASE_URL).json()
 
+    result_list = []
+
     for i in range(days_ahead * 8, (days_ahead * 8) + 5):
         temp = response['list'][i]['main']['temp']
         humidity = response['list'][i]['main']['humidity']
@@ -31,7 +34,9 @@ def weatherinfo(place, days_ahead):
         description = response['list'][i]['weather'][0]['description']
         time = response['list'][i]['dt_txt']
         icon = 'http://openweathermap.org/img/wn/' + response['list'][i]['weather'][0]['icon'] + '.png'
-        print([temp, humidity, main, description, time, icon])
+        result_list.append([temp, humidity, main, description, time, icon])
+
+    return jsonify(result_list)
 
 if __name__ == "__main__":
     print(weatherinfo('india', 0))
