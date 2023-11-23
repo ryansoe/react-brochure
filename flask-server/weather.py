@@ -13,9 +13,9 @@ def findlatlon(place):
 
     return (location.latitude, location.longitude)
 
-def weatherinfo(place, days_ahead):
-    if days_ahead not in range(5):
-        return False
+def weatherinfo(place):
+    # if days_ahead not in range(5):
+    #     return False
 
     API_KEY = os.getenv('api_key')
     latlon = findlatlon(place)
@@ -27,16 +27,16 @@ def weatherinfo(place, days_ahead):
 
     result_list = []
 
-    for i in range(days_ahead * 8, (days_ahead * 8) + 5):
-        temp = response['list'][i]['main']['temp']
-        humidity = response['list'][i]['main']['humidity']
-        main = response['list'][i]['weather'][0]['main']
-        description = response['list'][i]['weather'][0]['description']
-        time = response['list'][i]['dt_txt']
-        icon = 'http://openweathermap.org/img/wn/' + response['list'][i]['weather'][0]['icon'] + '.png'
+    for i in range(40):
+        temp = 'Temperature: '+ str(int((float(response['list'][i]['main']['temp']) - 273.15) * 1.8 + 32)) + ' F'
+        humidity = 'Humidity: ' + str(response['list'][i]['main']['humidity']) + '%'
+        main = 'Weather: ' + response['list'][i]['weather'][0]['main']
+        description = 'Description: ' + response['list'][i]['weather'][0]['description']
+        time = 'Time: ' + response['list'][i]['dt_txt']
+        icon = 'Icon: ' + 'http://openweathermap.org/img/wn/' + response['list'][i]['weather'][0]['icon'] + '.png'
         result_list.append([temp, humidity, main, description, time, icon])
 
-    return jsonify(result_list)
+    return result_list
 
 if __name__ == "__main__":
     print(weatherinfo('india', 0))

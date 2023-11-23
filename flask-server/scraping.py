@@ -26,4 +26,4 @@ def search_rest(place):
         count += 1
         if count >= n : break
 
-    return jsonify(restaurants)
+    return restaurants
