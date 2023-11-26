@@ -19,6 +19,7 @@ def search():
     data = request.get_json()
     place = data['userInput']
 
+    data_return["Place"] = place.title()
     data_return["Rest"] = scraping.search_rest(place)
     data_return["Weather"] = weather.weatherinfo(place)[0]
 
