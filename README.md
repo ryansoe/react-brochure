@@ -1,8 +1,10 @@
-# React + Vite
+# Brochure Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a web app that generates a travel brochure based on user input.
 
-Currently, two official plugins are available:
+The app takes a city name from the user, then it generates a brochure that contains top restaurants, cities, weather, and attactions in the area. The app will also list famous people from the area and provide a brief historical description of the city. All of this data is obtained through web scraping from websites such as Yelp and Wikipedia.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Front end: Javascript, React, NodeJS, HTML, CSS
+Backend: Flask, Python (modules used are Beautiful Soup, GeoPy, and Selenium)
+
+Created by Ryan Soe and Brandon Tran
